@@ -36,8 +36,9 @@ def predict(file):
 
 def java():
     os.system("java -jar Seleccionador.jar")
+    #os.system("java Seleccionador")
 
-host = "25.30.173.27"
+host, host_name = "",""
 port = 7777
 port2 = 6666
 print_lock = threading.Lock() 
@@ -50,7 +51,7 @@ def enviar(pred):
         print("Socket de envio successfully created")
     except socket.error as err: 
         print ("Socket de envio creation failed with error %s" %(err)) 
-   
+    
     s2.connect((host,port2))
     s2.send(pred.encode('UTF8'))
     s2.close()
@@ -85,8 +86,13 @@ print(predict("Imagenes prueba/dog6.jpg"))
 try: 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
     print("Socket successfully created")
+    host_name = socket.gethostname()
+    print("HOST NAME:",host_name)
+    host = socket.gethostbyname(host_name)
+    print("HOST:",host)
 except socket.error as err: 
     print ("socket creation failed with error %s" %(err)) 
+    System.exit(0)
 
 s.bind((host,port))
 print("socket binded to %s" %(port))
