@@ -108,7 +108,7 @@ while True:  # Mientras este conectado
     aux = data.split(os.path.abspath(os.getcwd()))
     if aux != [""]:
         lis = aux
-    print(lis)
+    print("List:",lis)
     pred = predict(lis[1][1:len(lis[1])])
     print("Prediccion a mandar: "+pred)
     envio = threading.Thread(target=enviar,name='Enviar',args=(pred,))
